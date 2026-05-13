@@ -5,34 +5,30 @@ import matplotlib.animation as animation
 # ==========================================
 # 1. A Física (Metropolis otimizado para animação)
 # ==========================================
-def metropolis_sweep(grid, beta):
+def metropolis_vectorized(grid, beta):
+    """
+    Executa uma varredura completa na grade utilizando o algoritmo de Metropolis vetorizado (Checkerboard).
+
+    Args:
+        grid (numpy.ndarray): Matriz 2D representando os spins (+1 ou -1).
+        beta (float): Parâmetro físico correspondente ao inverso da temperatura (1/T).
+
+    Returns:
+        numpy.ndarray: Grade atualizada após uma iteração completa de Monte Carlo.
+    """
     N = grid.shape[0]
-    
-    # Criamos máscaras como um tabuleiro de xadrez (True para Branco, False para Preto)
     x, y = np.indices((N, N))
     checker_white = (x + y) % 2 == 0
     checker_black = (x + y) % 2 != 0
 
     for mask in [checker_white, checker_black]:
-        # Calculamos os vizinhos de toda a grelha de uma vez só!
         vizinhos = (np.roll(grid, 1, axis=0) + np.roll(grid, -1, axis=0) +
                     np.roll(grid, 1, axis=1) + np.roll(grid, -1, axis=1))
-        
-        # dE para todas as células
         dE = 2 * grid * vizinhos
-        
-        # Probabilidade de aceitação
         prob = np.exp(-dE * beta)
-        
-        # Sorteamos números aleatórios
         rand_matrix = np.random.rand(N, N)
-        
-        # A MÁGICA: Atualizamos apenas onde a máscara é verdadeira 
         aceitar = (dE <= 0) | (rand_matrix < prob)
-        
-        # Aplicamos a mudança
         grid[mask & aceitar] *= -1
-        
     return grid
 
 # ==========================================
@@ -66,15 +62,12 @@ ax2.axis('off')
 # ==========================================
 def atualizar_frame(frame):
     global grid_frio, grid_quente
+    # Atualizado para o novo nome padronizado
+    grid_frio = metropolis_vectorized(grid_frio, beta_frio)
+    grid_quente = metropolis_vectorized(grid_quente, beta_quente)
     
-    # Roda a física
-    grid_frio = metropolis_sweep(grid_frio, beta_frio)
-    grid_quente = metropolis_sweep(grid_quente, beta_quente)
-    
-    # Atualiza as imagens na tela
     img_frio.set_data(grid_frio)
     img_quente.set_data(grid_quente)
-    
     return img_frio, img_quente
 
 # ==========================================
