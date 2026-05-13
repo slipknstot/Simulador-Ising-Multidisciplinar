@@ -1,8 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# 1. Nossa função super-rápida (já testada!)
+
 def metropolis_vectorized(grid, beta):
+"""
+    Simula a evolução do sistema usando o esquema de atualização em xadrez para performance.
+"""
     N = grid.shape[0]
     x, y = np.indices((N, N))
     for mask in [(x + y) % 2 == 0, (x + y) % 2 != 0]:
@@ -14,15 +17,26 @@ def metropolis_vectorized(grid, beta):
         grid[mask & aceitar] *= -1
     return grid
 
-# 2. Funções Matemáticas (Novidade!)
+# 2. Funções Matemáticas 
 def calcular_energia(grid):
+     """
+     Calcula a energia total do sistema baseada na interação entre vizinhos próximos.
+
+        Args:
+            grid (numpy.ndarray): Matriz de spins.
+            
+           Returns:
+            float: Energia total Hamiltoniana do sistema.
+     """
     vizinhos = (np.roll(grid, 1, axis=0) + np.roll(grid, -1, axis=0) +
                 np.roll(grid, 1, axis=1) + np.roll(grid, -1, axis=1))
     # Dividimos por 2 para não contar as interações dos vizinhos duas vezes
     return -0.5 * np.sum(grid * vizinhos)
 
 def calcular_magnetizacao(grid):
-    # É literalmente a soma de todos os spins (+1 e -1)
+    """
+    Calcula a magnetização total (soma escalar dos spins).
+    """
     return np.sum(grid)
 
 # 3. O Experimento
@@ -54,7 +68,7 @@ for T in temperaturas:
         E_anotacoes.append(calcular_energia(grid))
         M_anotacoes.append(abs(calcular_magnetizacao(grid)))
         
-    # Aplica as fórmulas de variância (Estatística Pura)
+    # Aplica as fórmulas de variância (Estatística)
     C_v = np.var(E_anotacoes) / (T**2)
     chi = np.var(M_anotacoes) / T
     
