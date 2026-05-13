@@ -13,10 +13,10 @@ Este repositório documenta minha jornada de exploração interdisciplinar. Como
 
 O projeto foi dividido em três abordagens fundamentais para analisar o mesmo sistema complexo:
 
-### 1. O Visual: Simulação Dinâmica (`1_Animacao_Visual.py`)
+### 1. O Visual: Simulação Dinâmica (`Visual_Animation.py`)
 Implementação do Algoritmo de Metropolis-Hastings. O código gera uma interface lado a lado simulando o comportamento de spins atômicos em temperaturas abaixo e acima do ponto crítico ($T_c$). Utilizamos vetorização via NumPy (padrão tabuleiro de xadrez) para otimizar o tempo de execução, permitindo rodar simulações em grande escala em tempo real.
 
-### 2. O Analítico: Métricas Termodinâmicas (`2_Termodinamica.py`)
+### 2. O Analítico: Métricas Termodinâmicas (`Termodinamica.py`)
 Prova matemática da transição de fase utilizando a mecânica estatística clássica. O script coleta amostras de energia e magnetização para calcular e plotar a Capacidade Térmica ($C_v$) e a Suscetibilidade Magnética ($\chi$), evidenciando o comportamento assintótico exatamente na temperatura crítica teórica ($T \approx 2.269$).
 
 ### 3. O Algorítmico: Machine Learning (`3_Machine_Learning_PCA.py`)
