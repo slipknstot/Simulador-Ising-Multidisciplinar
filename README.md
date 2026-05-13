@@ -26,4 +26,4 @@ A cereja do bolo. Aplicamos um algoritmo de aprendizado não supervisionado (PCA
 
 1. Clone este repositório:
  ```bash
-   git clone [https://github.com/slipknstot/Simulador-Ising-Multidisciplinar.git](https://github.com/slipknstot/Simulador-Ising-Multidisciplinar.git)
+  git clone https://github.com/slipknstot/Simulador-Ising-Multidisciplinar.git
