@@ -3,9 +3,12 @@ from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
 
 # ==========================================
-# 1. A Física (Motor Vetorizado - Super Rápido)
+# 1. A Física (Motor Vetorizado)
 # ==========================================
 def metropolis_vectorized(grid, beta):
+    """
+    Motor de simulação vetorizado para geração de datasets de alta amostragem.
+    """
     N = grid.shape[0]
     x, y = np.indices((N, N))
     
