@@ -20,7 +20,7 @@ Implementação do Algoritmo de Metropolis-Hastings. O código gera uma interfac
 Prova matemática da transição de fase utilizando a mecânica estatística clássica. O script coleta amostras de energia e magnetização para calcular e plotar a Capacidade Térmica ($C_v$) e a Suscetibilidade Magnética ($\chi$), evidenciando o comportamento assintótico exatamente na temperatura crítica teórica ($T \approx 2.269$).
 
 ### 3. O Algorítmico: Machine Learning (`Machine_Learning_PCA.py`)
-A cereja do bolo. Aplicamos um algoritmo de aprendizado não supervisionado (PCA) sobre milhares de matrizes brutas do sistema. Sem receber qualquer informação prévia sobre as regras da física ou sobre o conceito de temperatura, a Inteligência Artificial é capaz de extrair a "ordem" do sistema e redescobrir, de forma autônoma, o ponto exato da quebra de simetria da matéria.
+Apliquei um algoritmo de aprendizado não supervisionado (PCA) sobre milhares de matrizes brutas do sistema. Sem receber qualquer informação prévia sobre as regras da física ou sobre o conceito de temperatura, a Inteligência Artificial é capaz de extrair a "ordem" do sistema e redescobrir, de forma autônoma, o ponto exato da quebra de simetria da matéria.
 
 ## Como Executar na Sua Máquina
 
